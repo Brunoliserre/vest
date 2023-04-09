@@ -3,7 +3,7 @@ import { sequelize } from "../db.js";
 import User from "User.js";
 import Product from "Product.js";
 
-export const Order = sequelize.define("order", {
+export const Order = sequelize.define("Order", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -20,19 +20,15 @@ export const Order = sequelize.define("order", {
   },
   shippingAddress: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   shippingZip: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   shippingCity: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   shippingProvince: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   total: {
     type: DataTypes.REAL,

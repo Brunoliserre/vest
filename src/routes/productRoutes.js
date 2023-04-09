@@ -1,4 +1,4 @@
-import { Router } from "express";
+/*import { Router } from "express";
 import {
   getAllProducts,
   getProduct,
@@ -17,3 +17,4 @@ router.delete("/:id", deleteProduct);
 router.put(":/id", updateProduct);
 
 export default router;
+*/
