@@ -70,6 +70,7 @@ export const createCategory = async (req, res, next) => {
 };
 
 export const deleteCategory = async (req, res, next) => {
+  const { id } = req.params;
   try {
     const category = await categoryServices.getCategoryById(id);
     if (!category) {
