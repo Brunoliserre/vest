@@ -1,18 +1,18 @@
-import Category from "../models/Category.js";
+import Product from "../models/Product.js";
 
 const nameValidator = async (category) => {
   const errors = [];
   const { name } = category;
-  const existingCategory = await Category.findOne({
+  const existingProduct = await Product.findOne({
     where: { name },
   });
 
   if (name.length < 3 || name.length > 20) {
-    errors.push("Category name should have between 3 and 50 characters.");
+    errors.push("Product name should have between 3 and 20 characters");
   }
 
-  if (existingCategory) {
-    errors.push("Category name already exist");
+  if (existingProduct && existingProduct.id !== id) {
+    errors.push("Product already exist");
   }
 
   if (errors.length > 0) {
@@ -28,23 +28,23 @@ const updateValidator = async (id, updateData) => {
   }
 
   if (updateData.name) {
-    const existingCategory = await Category.findOne({
+    const existingProduct = await Product.findOne({
       where: { name: updateData.name },
     });
 
-    if (existingCategory && existingCategory.id !== id) {
-      errors.push("Category name already exist");
+    if (existingProduct && existingProduct.id !== id) {
+      errors.push("Product name already exist");
     }
   }
 
   if (errors.length > 0) {
-    throw new Error(erros.join(" "));
+    throw new Error(errors.join(" "));
   }
 };
 
-const categoryValidators = {
+const productValidators = {
   nameValidator,
   updateValidator,
 };
 
-export default categoryValidators;
+export default productValidators;

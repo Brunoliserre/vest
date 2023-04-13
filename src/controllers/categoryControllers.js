@@ -52,7 +52,7 @@ export const createCategory = async (req, res, next) => {
       name: body.name,
     };
 
-    const errors = categoryValidators.categoryNameValidator(newCategory);
+    const errors = categoryValidators.nameValidator(newCategory);
     if (errors.length > 0) {
       res.status(404).send({ errors });
       return;
@@ -81,7 +81,11 @@ export const deleteCategory = async (req, res, next) => {
         res.status(400).send("Can't delete a category with related products");
       } else {
         const categoryDeleted = await categoryServices.deleteCategory(id);
-        res.status(200).send("Category deleted");
+        if (categoryDeleted) {
+          res.status(200).send("Category deleted");
+        } else {
+          res.status(404).send("Error deleting category");
+        }
       }
     }
   } catch (error) {

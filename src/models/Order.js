@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../db/db.js";
-import User from "User.js";
-import Product from "Product.js";
+import User from "./User.js";
+import Product from "./Product.js";
 
 export const Order = sequelize.define("Order", {
   id: {
@@ -34,6 +34,8 @@ export const Order = sequelize.define("Order", {
     type: DataTypes.REAL,
   },
 });
+
+//Relations
 
 Order.belongsTo(User);
 User.hasMany(Order);

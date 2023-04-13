@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../db/db.js";
-import Category from "./Category.js";
 
 export const Product = sequelize.define("Product", {
   id: {
@@ -42,8 +41,5 @@ export const Product = sequelize.define("Product", {
     defaultValue: true,
   },
 });
-
-Category.belongsToMany(Product, { through: "CategoryProduct" });
-Product.belongsToMany(Category, { through: "CategoryProduct" });
 
 export default Product;
