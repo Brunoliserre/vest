@@ -1,7 +1,13 @@
-import { PrismaClient } from '../generated/prisma/client'
+import 'dotenv/config';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from "../src/generated/client";
+import pg from 'pg';
 import bcrypt from 'bcrypt';
 
-const prisma = new PrismaClient({});
+const connectionString = `${process.env.DATABASE_URL}`
+
+const adapter = new PrismaPg({ connectionString })
+const prisma = new PrismaClient({ adapter })
 
 async function main() {
   console.log('🌱 Iniciando seed...\n');
@@ -19,9 +25,9 @@ async function main() {
   // 1. USUARIOS
   // ============================================
   console.log('👥 Creando usuarios...');
-  
+
   const hashedPassword = await bcrypt.hash('123456', 10);
-  
+
   const admin = await prisma.user.create({
     data: {
       email: 'admin@test.com',

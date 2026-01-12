@@ -8,6 +8,7 @@ import { productRoutes } from "./modules/products/product-routes";
 import { orderRoutes } from "./modules/orders/order-routes";
 import { categoryRoutes } from "./modules/categories/category-routes";
 import { uploadRoutes } from "./modules/upload/upload-routes";
+import { cartRoutes } from "./modules/cart/cart-routes";
 import { authRoutes } from "./modules/auth/auth-routes";
 import { authenticate, isAdmin } from "./middleware/auth";
 
@@ -42,6 +43,7 @@ await app.register(productRoutes, { prefix: '/api/products' });
 await app.register(orderRoutes, { prefix: '/api/orders' });
 await app.register(categoryRoutes, { prefix: '/api/categories' });
 await app.register(uploadRoutes, { prefix: '/api/upload' });
+await app.register(cartRoutes, { prefix: '/api/cart' });
 await app.register(authRoutes, { prefix: '/api/auth' });
 
 // Error handler global
